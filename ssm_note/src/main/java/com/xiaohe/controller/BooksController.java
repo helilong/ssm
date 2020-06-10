@@ -3,9 +3,7 @@ package com.xiaohe.controller;
 import com.xiaohe.pojo.Books;
 import com.xiaohe.service.IBooksService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,7 +11,7 @@ import java.util.List;
 public class BooksController {
 
     @Autowired
-    private IBooksService iBooksService;
+    private IBooksService booksService;
     @Autowired
     private Books books;
 
@@ -21,14 +19,24 @@ public class BooksController {
     @RequestMapping("/list")
     public List<Books> list(){
         System.out.println("控制层---查询所有");
-        System.out.println(iBooksService.findAll());
-        return iBooksService.findAll();
+        System.out.println(booksService.findAll());
+        return booksService.findAll();
     }
 
-    @RequestMapping("deleteBook")
-    public String delete(int id){
+    @RequestMapping("/deleteBook")
+    public String delete(@RequestBody Books book){
         System.out.println("控制层------删除一个");
-        System.out.println(iBooksService.deleteBook(id));
-        return "redirect:/show.html";
+        System.out.println(book.getBookId());
+       int i= booksService.deleteBook(book.getBookId());
+        System.out.println("i+++"+i);
+        return "redirect:show";
     }
+
+    @RequestMapping("/insertBook")
+    public  String insert(@RequestBody Books book){
+        System.out.println(book);
+        System.out.println(booksService.addBook(book));
+        return "show";
+    }
+
 }

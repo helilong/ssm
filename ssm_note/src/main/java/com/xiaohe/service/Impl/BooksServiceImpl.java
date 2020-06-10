@@ -23,22 +23,26 @@ public class BooksServiceImpl implements IBooksService {
 
     @Override
     public int addBook(Books books) {
-        return 0;
+
+        return booksMapper.addBook(books);
     }
 
     @Override
     public int deleteBook(int id) {
-        return 0;
+
+        return booksMapper.deleteBook(id);
     }
 
     @Override
     public int updateBook(Books books) {
-        return 0;
+
+        return booksMapper.updateBook(books);
     }
 
     @Override
     public Books findId(int id) {
-        return null;
+
+        return booksMapper.findId(id);
     }
 
 }

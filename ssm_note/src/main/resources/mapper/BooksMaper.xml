@@ -21,6 +21,6 @@
     </update>
 
     <delete id="deleteBook" parameterType="int">
-            delete from Books where bookID = #{id}
+            delete from books where bookID = #{id}
     </delete>
 </mapper>

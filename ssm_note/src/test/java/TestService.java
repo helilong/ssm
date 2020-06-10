@@ -17,4 +17,11 @@ public class TestService {
         System.out.println(booksService.findAll());
     }
 
+    @Test
+    public void delene(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+        //   IUserService userService = (IUserService) applicationContext.getBean("userServiceImpl");
+        IBooksService booksService = (IBooksService) applicationContext.getBean("booksServiceImpl");
+        System.out.println( booksService.deleteBook(5));
+    }
 }

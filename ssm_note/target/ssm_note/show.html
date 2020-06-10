@@ -16,11 +16,25 @@
     </tbody>
 </table>
 
+
+<input id="bookId" name="bookId"  >
+<input type="button" id="delete" value="测试删除">
+
+<form method="post">
+    书名 <input name="bookName" id="bookName">
+    <br>
+    数量 <input name="bookCounts" id="bookCounts">
+    <br>
+    描述 <input name="detail" id="detail">
+    <br>
+    <input type="submit"value="新增" id="insert">
+</form>
+
+
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script>
     $(function () {
         $(document).ready(function(){
-            alert(1)
             $.post("/list", function (data) {
                 console.log(data)
                 console.log(data.length)
@@ -38,6 +52,39 @@
             });
         });
     });
+
+</script>
+
+
+
+<script>
+
+    $("#delete").click(function () {
+        alert($("#bookId").val())
+        $.ajax({
+            url:"../deleteBook",
+            data:JSON.stringify({"bookId":$("#bookId").val()}),
+            // dataType: "json",
+            type:"post",
+            contentType: "application/json;charset=UTF-8",//指定消息请求类型
+            success(data){
+            }
+        })
+    })
+</script>
+<script>
+    $("#insert").click(function () {
+       alert(1)
+        $.ajax({
+            url:"../insertBook",
+            data:JSON.stringify({"bookName":$("#bookName").val(),"bookCounts":$("#bookCounts").val(),"detail":$("#detail").val()}),
+            // dataType: "json",
+            type:"post",
+            contentType: "application/json;charset=UTF-8",//指定消息请求类型
+            success(data){
+            }
+        })
+    })
 </script>
 </body>
 </html>
